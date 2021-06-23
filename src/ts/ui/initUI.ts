@@ -105,7 +105,6 @@ export const initUI = (vditor: IVditor) => {
 };
 
 export const setPadding = (vditor: IVditor) => {
-    console.log(123)
     const minPadding = window.innerWidth <= Constants.MOBILE_WIDTH ? 10 : 35;
     if (vditor.wysiwyg.element.parentElement.style.display !== "none") {
         const padding = (vditor.wysiwyg.element.parentElement.clientWidth
