@@ -105,6 +105,7 @@ export const initUI = (vditor: IVditor) => {
 };
 
 export const setPadding = (vditor: IVditor) => {
+    console.log(123)
     const minPadding = window.innerWidth <= Constants.MOBILE_WIDTH ? 10 : 35;
     if (vditor.wysiwyg.element.parentElement.style.display !== "none") {
         const padding = (vditor.wysiwyg.element.parentElement.clientWidth
@@ -127,10 +128,13 @@ export const setPadding = (vditor: IVditor) => {
     }
 
     if (vditor.currentMode === "sv") {
-        const padding = (vditor.sv.element.parentElement.clientWidth
-          - vditor.options.preview.maxWidth) / 2;
-          vditor.sv.element.style.padding = `10px ${Math.max(minPadding, padding)}px`;
-          // vditor.title.setHeight()
+      const padding = (vditor.sv.element.parentElement.clientWidth
+        - vditor.options.preview.maxWidth) / 2;
+        vditor.sv.element.style.padding = `10px ${Math.max(minPadding, padding)}px`;
+      const positionStyle = Math.max(5,
+        parseInt(vditor[vditor.currentMode].element.style.paddingLeft || "0", 10) +
+          (vditor.options.outline.position === "left" ? vditor.outline.element.offsetWidth : 0)) + "px";
+          vditor.toolbar.element.style.paddingLeft =  vditor.title.element.style.paddingLeft = positionStyle;
     }
 
 };
