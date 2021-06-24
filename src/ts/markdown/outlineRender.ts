@@ -45,10 +45,10 @@ export const outlineRender = (contentElement: HTMLElement, targetElement: Elemen
             }
         }
         if (item.nextElementSibling && item.nextElementSibling.tagName === "UL") {
-            item.innerHTML = `<span class='vditor-outline__action'></span><span title=${item.innerHTML} class='vditor-outline__item space-${parents.length}'>` + item.innerHTML + "</span>";
+            item.innerHTML = `<span class='vditor-outline__action'></span><span class='vditor-outline__item space-${parents.length}'>` + item.innerHTML + "</span>";
         }
         else {
-            item.innerHTML = `<span title=${item.innerHTML} class='vditor-outline__item space-${parents.length}'>` + item.innerHTML + "</span>";
+            item.innerHTML = `<span class='vditor-outline__item space-${parents.length}'>` + item.innerHTML + "</span>";
         }
         item.setAttribute("data-target-id", ids[index]);
     });
