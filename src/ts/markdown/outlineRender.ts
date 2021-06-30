@@ -127,20 +127,20 @@ export const outlineRender = (contentElement: HTMLElement, targetElement: Elemen
             titles = document.querySelectorAll('[data-marker="#"]');
         }
         for(let i = 0; i < titles.length; i++) {
-                let offsetTop = 0;
-                let nextOffsetTop = 0;
-                if (titles[i].classList.contains('.vditor-anchor')) {
-                    offsetTop = titles[i].parentElement.offsetTop;
-                    nextOffsetTop = titles[i + 1] && titles[i + 1].parentElement.offsetTop;
-                } else {
-                    offsetTop = titles[i].offsetTop;
-                    nextOffsetTop = titles[i + 1] && titles[i + 1].offsetTop;
-                }
-                if((offsetTop <= totalHeight && nextOffsetTop > totalHeight) || (offsetTop <= totalHeight && !titles[i + 1])){
-                    navs[i] && navs[i].classList.add("active");
-                } else {
-                    navs[i].classList.remove("active");
-                }
+            let offsetTop = 0;
+            let nextOffsetTop = 0;
+            if (titles[i].classList.contains('.vditor-anchor')) {
+                offsetTop = titles[i].parentElement.offsetTop;
+                nextOffsetTop = titles[i + 1] && titles[i + 1].parentElement.offsetTop;
+            } else {
+                offsetTop = titles[i].offsetTop;
+                nextOffsetTop = titles[i + 1] && titles[i + 1].offsetTop;
+            }
+            if((offsetTop <= totalHeight && nextOffsetTop > totalHeight) || (offsetTop <= totalHeight && !titles[i + 1])){
+                navs[i] && navs[i].classList.add("active");
+            } else {
+                navs[i] && navs[i].classList.remove("active");
+            }
         }
     };
     (scrollElement || window).addEventListener('scroll', handleScrollEvent);
