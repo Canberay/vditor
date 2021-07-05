@@ -1380,6 +1380,8 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                 processCodeRender(codeElement.parentElement.nextElementSibling as HTMLElement, vditor);
             }
         }
+    } else if (files.length > 0 && vditor.options.upload.url) {
+        await uploadFiles(vditor, files);
     } else if (code) {
         callback.pasteCode(code);
     } else {
@@ -1406,8 +1408,6 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                 processPaste(vditor, vditor.lute.HTML2Md(tempElement.innerHTML).trimRight());
             }
             vditor.outline.render(vditor);
-        } else if (files.length > 0 && vditor.options.upload.url) {
-            await uploadFiles(vditor, files);
         } else if (textPlain.trim() !== "" && files.length === 0) {
             if (vditor.currentMode === "ir") {
                 renderers.Md2VditorIRDOM = {renderLinkDest};
