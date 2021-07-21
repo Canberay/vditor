@@ -94,10 +94,16 @@
 ### TODO
 
 * [open issues](https://github.com/Vanessa219/vditor/issues)
-* [346](https://github.com/Vanessa219/vditor/issues/346) 内容主题推荐（长期有效） `改进功能`
 
-### v3.8.5 / 2021-06-xx
+### v3.8.5 / 2021-07-06
 
+* [974](https://github.com/Vanessa219/vditor/issues/974) 所见即所得模式下行级元素间的空格会被删除 `修复缺陷`
+* [1029](https://github.com/Vanessa219/vditor/issues/1029) 公式内小于号大于号等没有转义 `修复缺陷`
+* [1036](https://github.com/Vanessa219/vditor/issues/1036) 标题设置没有配置多语言 `改进功能`
+* [957](https://github.com/Vanessa219/vditor/issues/957) 支持表格横向滚动 `引入特性`
+* [1038](https://github.com/Vanessa219/vditor/issues/1038) 图片使用 pointer 样式 `改进功能`
+* [1034](https://github.com/Vanessa219/vditor/pull/1034) Support Vue and Angular `改进功能`
+* [1016](https://github.com/Vanessa219/vditor/pull/1016) Support Svelte `文档相关`
 * [1009](https://github.com/Vanessa219/vditor/pull/1009/) 对于 markdown 目录下的渲染方法新增 适配模块 `引入特性`
 * [1011](https://github.com/Vanessa219/vditor/issues/1011) 支持导出 JSON `引入特性`
 * [1010](https://github.com/Vanessa219/vditor/issues/1010) 多语言分离 `改进功能`

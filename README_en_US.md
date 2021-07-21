@@ -11,9 +11,9 @@ Easy-to-use Markdown editor, born to adapt to different application scenarios
 <a title="Downloads" target="_blank" href="https://www.npmjs.com/package/vditor"><img src="https://img.shields.io/npm/dt/vditor.svg?style=flat-square&color=97ca00"></a><br>
 <a title="jsdelivr" target="_blank" href="https://www.jsdelivr.com/package/npm/vditor"><img src="https://data.jsdelivr.com/v1/package/npm/vditor/badge"/></a>
 <a title="Hits" target="_blank" href="https://github.com/88250/hits"><img src="https://hits.b3log.org/Vanessa219/vditor.svg"></a> <br><br>
-<a title="GitHub Watchers" target="_blank" href="https://github.com/Vanessa219/vditor/watchers"><img src="https://img.shields.io/github/watchers/Vanessa219/vditor.svg?label=Watchers&style=social"></a>  
-<a title="GitHub Stars" target="_blank" href="https://github.com/Vanessa219/vditor/stargazers"><img src="https://img.shields.io/github/stars/Vanessa219/vditor.svg?label=Stars&style=social"></a>  
-<a title="GitHub Forks" target="_blank" href="https://github.com/Vanessa219/vditor/network/members"><img src="https://img.shields.io/github/forks/Vanessa219/vditor.svg?label=Forks&style=social"></a>  
+<a title="GitHub Watchers" target="_blank" href="https://github.com/Vanessa219/vditor/watchers"><img src="https://img.shields.io/github/watchers/Vanessa219/vditor.svg?label=Watchers&style=social"></a>
+<a title="GitHub Stars" target="_blank" href="https://github.com/Vanessa219/vditor/stargazers"><img src="https://img.shields.io/github/stars/Vanessa219/vditor.svg?label=Stars&style=social"></a>
+<a title="GitHub Forks" target="_blank" href="https://github.com/Vanessa219/vditor/network/members"><img src="https://img.shields.io/github/forks/Vanessa219/vditor.svg?label=Forks&style=social"></a>
 <a title="Author GitHub Followers" target="_blank" href="https://github.com/vanessa219"><img src="https://img.shields.io/github/followers/vanessa219.svg?label=Followers&style=social"></a>
 </p>
 
@@ -23,7 +23,7 @@ Easy-to-use Markdown editor, born to adapt to different application scenarios
 
 ## 💡 Introduction
 
-[Vditor](https://b3log.org/vditor) is a browser-side Markdown editor, implemented using TypeScript. Support native JavaScript, Vue, React and Angular, provide [desktop](https://b3log.org/siyuan).
+[Vditor](https://b3log.org/vditor) is a browser-side Markdown editor, implemented using TypeScript. Support native JavaScript, Vue, React, Angular and Svelte, provide [desktop](https://b3log.org/siyuan).
 
 Welcome to [Vditor Official Site](https://b3log.org/vditor) to learn more.
 
@@ -151,6 +151,7 @@ const vditor = new Vditor(id, {options...})
 * [Demo](https://b3log.org/vditor/demo/index.html)
 * [CommonJS Editor](https://github.com/Vanessa219/vditor/blob/master/demo/index.js)
 * [CommonJS Render](https://github.com/Vanessa219/vditor/blob/master/demo/render.js)
+* [Use in Svelte](https://github.com/HerbertHe/svelte-vditor-demo)
 
 ### Themes
 
@@ -171,13 +172,14 @@ Can be filled with element `id` or element itself` HTMLElement`
 
 |   | Explanation | Default |
 | - | - | - |
+| i18n | I18n, more details see ITips | - |
 | undoDelay | Undo interval | - |
 | after | Callback method after editor asynchronous rendering is completed | - |
 | height | Total editor height | 'auto' |
 | minHeight | Editing area minimum height | - |
 | width | Total editor width, supports % | 'auto' |
 | placeholder | Tips when the input area is empty | '' |
-| lang | i18n: en_US, ja_JP, ko_KR, ru_RU, zh_CN, zh_TW | 'zh_CN' |
+| lang | I18n type: en_US, ja_JP, ko_KR, ru_RU, zh_CN, zh_TW | 'zh_CN' |
 | input | Trigger after input (value: string) | - |
 | focus | Trigger after focusing (value: string) | - |
 | blur | Trigger after out of focus (value: string) | - |
@@ -354,35 +356,35 @@ interface IHintExtend {
 * The data structure of the file upload is as follows. When the data structure returned by the backend is inconsistent, you can use `format` for conversion.
 
 ```js
-// POST data  
-xhr.send(formData);  // formData = FormData.append("file[]", File)  
-// return data  
-{  
- "msg": "",  
- "code": 0,  
- "data": {  
- "errFiles": ['filename', 'filename2'],  
- "succMap": {  
-   "filename3": "filepath3",  
-   "filename3": "filepath3"  
-   }  
- }  
+// POST data
+xhr.send(formData);  // formData = FormData.append("file[]", File)
+// return data
+{
+ "msg": "",
+ "code": 0,
+ "data": {
+ "errFiles": ['filename', 'filename2'],
+ "succMap": {
+   "filename3": "filepath3",
+   "filename3": "filepath3"
+   }
+ }
 }
 ```
 
 * In order to prevent the off-site pictures from being invalid, `linkToImgUrl` can transfer the off-site picture addresses in the clipboard to the server for saving and processing. The data structure is as follows:
 
 ```js
-// POST data  
+// POST data
 xhr.send(JSON.stringify({url: src})); // src is the address of the image outside the station
-// return data  
-{  
- msg: '',  
- code: 0,  
- data : {  
-   originalURL: '',  
-   url: ''  
- }  
+// return data
+{
+ msg: '',
+ code: 0,
+ data : {
+   originalURL: '',
+   url: ''
+ }
 }
 ```
 
@@ -440,6 +442,7 @@ xhr.send(JSON.stringify({url: src})); // src is the address of the image outside
 
 |   | Explanation |
 | - | - |
+| exportJSON(markdown: string) | Get JSON by markdown |
 | getValue() | Get editor content |
 | getHTML() | Get preview area content |
 | insertValue(value: string, render = true) | Insert content at the focus and markdown rendering by default |
@@ -478,7 +481,7 @@ Vditor.mermaidRender(document)
 ```
 
 ```js
-import VditorPreview from 'vditor/dist/method.min'  
+import VditorPreview from 'vditor/dist/method.min'
 VditorPreview.mermaidRender(document)
 ```
 
@@ -491,9 +494,9 @@ options?: IPreviewOptions {
   mode: "dark" | "light";
   anchor?: number;  // 0: no render, 1: render left, 2: render right
   customEmoji?: { [key: string]: string };    // Custom emoji, default is {}
-  lang?: (keyof II18nLang);    // Language, default is 'zh_CN'  
-  emojiPath?: string;    // Emoji picture path 
-  hljs?: IHljs; // Refer to options.preview.hljs 
+  lang?: (keyof II18nLang);    // Language, default is 'zh_CN'
+  emojiPath?: string;    // Emoji picture path
+  hljs?: IHljs; // Refer to options.preview.hljs
   speech?: {  // Read the selected content
     enable?: boolean,
   };
@@ -514,7 +517,7 @@ options?: IPreviewOptions {
 | previewImage(oldImgElement: HTMLImageElement, lang: keyof II18n = "zh_CN", theme = "classic") | Click on the image to preview |
 | mermaidRender(element: HTMLElement, cdn = options.cdn, theme = options.theme) | flowchart/sequence diagram/gantt diagram rendering |
 | flowchartRender(element: HTMLElement, cdn = options.cdn) | flowchart.js rendering |
-| codeRender(element: HTMLElement, lang: (keyof II18nLang) = "zh_CN") | Add a copy button for the code block in element |
+| codeRender(element: HTMLElement) | Add a copy button for the code block in element |
 | chartRender(element: (HTMLElement\| Document) = document, cdn = options.cdn, theme = options.theme) | Chart rendering |
 | plantumlRender(element: (HTMLElement\| Document) = document, cdn = options.cdn) | plantuml rendering |
 | abcRender(element: (HTMLElement\| Document) = document, cdn = options.cdn) | Stave rendering |
