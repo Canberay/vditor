@@ -437,7 +437,7 @@ class Vditor extends VditorMethod {
           this.vditor.title.setValue(content,maxLength);
       }
     }
-    
+
     /** 获取 标题 内容 */
     public getTitleValue() {
       return  this.vditor.title.getValue();
@@ -452,7 +452,7 @@ class Vditor extends VditorMethod {
 
     /** 设置 模式 */
     public changeEditMode(type:string) {
-      setEditMode(this.vditor, type, event);
+      setEditMode(this.vditor, type, '');
     }
 
     /** 设置 大纲 显示隐藏 */
@@ -494,7 +494,7 @@ class Vditor extends VditorMethod {
         if (mergedOptions.upload.url || mergedOptions.upload.handler) {
             this.vditor.upload = new Upload();
         }
-        
+
         if (mergedOptions.title.enable) {
           this.vditor.title = new Title(this.vditor);
         }
