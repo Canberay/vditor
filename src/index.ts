@@ -452,7 +452,7 @@ class Vditor extends VditorMethod {
 
     /** 设置 模式 */
     public changeEditMode(type:string) {
-      setEditMode(this.vditor, type, '');
+        setEditMode(this.vditor, type, this.getValue());
     }
 
     /** 设置 大纲 显示隐藏 */
