@@ -1345,7 +1345,7 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
         `<!--StartFragment--><a href="${textPlain}">${textPlain}</a><!--EndFragment-->`) {
         textHTML = "";
     }
-
+    
     // process word
     const doc = new DOMParser().parseFromString(textHTML, "text/html");
     if (doc.body) {
@@ -1434,10 +1434,12 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
                 wbr.remove();
             });
             range.insertNode(document.createElement("wbr"));
-            if (vditor.currentMode === "wysiwyg") {
-                blockElement.outerHTML = vditor.lute.SpinVditorDOM(blockElement.outerHTML);
-            } else {
-                blockElement.outerHTML = vditor.lute.SpinVditorIRDOM(blockElement.outerHTML);
+            if (blockElement.tagName !== "TABLE") {
+                if (vditor.currentMode === "wysiwyg") {
+                    blockElement.outerHTML = vditor.lute.SpinVditorDOM(blockElement.outerHTML);
+                } else {
+                    blockElement.outerHTML = vditor.lute.SpinVditorIRDOM(blockElement.outerHTML);
+                }
             }
             setRangeByWbr(vditor[vditor.currentMode].element, range);
         }
