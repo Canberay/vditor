@@ -139,12 +139,14 @@ export const input = (vditor: IVditor, range: Range, event?: InputEvent) => {
         log("SpinVditorDOM", html, "argument", vditor.options.debugger);
         html = vditor.lute.SpinVditorDOM(html);
         log("SpinVditorDOM", html, "result", vditor.options.debugger);
-
+        
         if (isWYSIWYGElement) {
             blockElement.innerHTML = html;
         } else {
-            blockElement.outerHTML = html;
-
+            // 修复表格编辑时跳动问题
+            if (blockElement.tagName !== "TABLE") {
+                blockElement.outerHTML = html;
+            }
             if (footnoteElement) {
                 // 更新正文中的 tip
                 const footnoteItemElement = hasTopClosestByTag(vditor.wysiwyg.element.querySelector("wbr"), "LI");
